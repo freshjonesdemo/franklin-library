@@ -243,11 +243,12 @@ export async function decorateIcons(element) {
  */
 export async function fetchPlaceholders(prefix = 'default') {
   window.placeholders = window.placeholders || {};
+  let defaultPrefix = window.hlx.libraryBasePath
   const loaded = window.placeholders[`${prefix}-loaded`];
   if (!loaded) {
     window.placeholders[`${prefix}-loaded`] = new Promise((resolve, reject) => {
       try {
-        fetch(`${prefix === 'default' ? '' : prefix}/placeholders.json`)
+        fetch(`${prefix === 'default' ? defaultPrefix : prefix}/placeholders.json`)
           .then((resp) => resp.json())
           .then((json) => {
             const placeholders = {};
