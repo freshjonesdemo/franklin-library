@@ -5,6 +5,8 @@ class Analytics {
   }
 
   async loadGlobalAnalytics(url = '/global/analytics.json') {
+    defaultPrefix =window.hlx.libraryBasePath;
+    url = `${defaultPrefix}url`
     const resp = await fetch(url);
     if (!resp.ok) {
       throw Error('analytics is not available');
