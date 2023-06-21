@@ -204,6 +204,15 @@ async function loadLazy(doc) {
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
   sampleRUM.observe(main.querySelectorAll('picture > img'));
+
+  if (window.location.hostname === 'localhost'
+    || window.location.hostname.endsWith('.hlx.page')
+    || window.location.hostname.endsWith('.hlx.reviews')
+    || window.location.hostname.endsWith('.hlx.live')
+    || window.location.hostname.endsWith('.franklin.edison.pfizer')) {
+    await import(`${window.hlx.CDNBasePath}/tools/sidekick/review.js`);
+  }
+
 }
 
 /**

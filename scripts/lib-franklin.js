@@ -695,6 +695,9 @@ export function setup() {
       console.log(error);
     }
   }
+
+  window.hlx.CDNBasePath = 'https://regal-faloodeh-256aa9.netlify.app'
+
 }
 
 export function buildISI(main) {
