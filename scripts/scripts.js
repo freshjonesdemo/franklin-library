@@ -209,7 +209,8 @@ async function loadLazy(doc) {
     || window.location.hostname.endsWith('.hlx.page')
     || window.location.hostname.endsWith('.hlx.reviews')
     || window.location.hostname.endsWith('.hlx.live')
-    || window.location.hostname.endsWith('.franklin.edison.pfizer')) {
+    || window.location.hostname.endsWith('.franklin.edison.pfizer')
+    || window.location.hostname.endsWith('.freshjones.dev')) {
     await import(`${window.hlx.CDNBasePath}/tools/sidekick/review.js`);
   }
 
