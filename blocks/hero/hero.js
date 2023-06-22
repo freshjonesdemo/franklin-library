@@ -131,6 +131,6 @@ export default async function decorate(block) {
   });
 
   const bug = document.createElement('div');
-    bug.innerHTML = '<div style="background:red; color: white; font-size:50px; position:fixed; bottom: 0; line-height:50px; z-index:99;">BUG 2</div'
+    bug.innerHTML = '<div style="background:red; color: white; font-size:50px; line-height:50px; display:inline;">Hero Bug</div'
     block.append(bug);
 }
