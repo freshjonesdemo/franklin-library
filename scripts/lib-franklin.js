@@ -441,7 +441,7 @@ export async function loadBlock(block) {
     block.dataset.blockStatus = 'loading';
     let { blockName } = block.dataset;
 
-    let basePath = window.hlx.codeBasePath;
+    let basePath = '';
 
     if (blockName.startsWith('core-')) {
       basePath = window.hlx.libraryBasePath;
