@@ -129,4 +129,8 @@ export default async function decorate(block) {
   block.querySelectorAll('p > sub').forEach((footnote) => {
     footnote.closest('p').classList.add('hero-footnote');
   });
+
+  const bug = document.createElement('div');
+    bug.innerHTML = '<div style="background:red; color: white; font-size:50px; position:fixed; bottom: 0; line-height:50px; z-index:99;">BUG 2</div'
+    block.append(bug);
 }
