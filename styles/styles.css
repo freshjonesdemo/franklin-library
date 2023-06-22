@@ -30,7 +30,7 @@
   --gray-90: #131415;
   --gray-95: #090A0A;
   --error-color: #E90649;
-  --primary-color: var(--pfizer-blue);
+  --primary-color: var(--gray-50);
   --secondary-color: var(--pfizer-sky);
   --tertiary-color: var(--pfizer-light);
 
