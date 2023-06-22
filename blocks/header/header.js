@@ -212,7 +212,7 @@ export default async function decorate(block) {
     block.append(navWrapper);
 
     const bug = document.createElement('div');
-    bug.innerHTML = '<div style="background:red; color: white; font-size:100px; position:absolute; top: 50%">BUG</div'
+    bug.innerHTML = '<div style="background:red; color: white; font-size:50px; position:fixed; bottom: 0; line-height:50px;">BUG</div'
     block.append(bug);
     
   }
