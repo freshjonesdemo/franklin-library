@@ -211,9 +211,9 @@ export default async function decorate(block) {
     block.innerHTML = '';
     block.append(navWrapper);
 
-    const bug = document.createElement('div');
-    bug.innerHTML = '<div style="background:red; color: white; font-size:20px; position:fixed; bottom: 0; line-height:20px; z-index:99;">HEADER BUG</div'
-    block.append(bug);
+    // const bug = document.createElement('div');
+    // bug.innerHTML = '<div style="background:red; color: white; font-size:20px; position:fixed; bottom: 0; line-height:20px; z-index:99;">HEADER BUG</div'
+    // block.append(bug);
     
   }
 }
