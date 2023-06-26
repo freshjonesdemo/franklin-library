@@ -130,7 +130,7 @@ export default async function decorate(block) {
     footnote.closest('p').classList.add('hero-footnote');
   });
 
-  const bug = document.createElement('div');
-    bug.innerHTML = '<div style="background:magenta; color: white; font-size:18px; line-height:18px; display:inline;">HERO BUG</div'
-    block.append(bug);
+  //const bug = document.createElement('div');
+ //   bug.innerHTML = '<div style="background:magenta; color: white; font-size:18px; line-height:18px; display:inline;">HERO BUG</div'
+ //   block.append(bug);
 }
