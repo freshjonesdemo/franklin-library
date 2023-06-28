@@ -10,6 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
+ @import url('./tokens/example.css');
+
  :root {
   /* color tokens */
   --pfizer-light: #ECF5FE;
@@ -189,10 +191,16 @@ footer {
   grid-area: footer;
 }
 
+/* example of global assignment with specific override */
+h1 {
+  /* ---example-color-global-test--h1: purple; */
+  color: var(---example-color-global-test--h1, var(--example-color-global-test));
+}
+
 h1, h2, h3, h4, h5, h6 {
   max-width: calc(var(--content-width) * .8);
   margin: 1.1rem 0;
-  color: var(--heading-color);
+  /* temp remove while testing.... color: var(--heading-color); */
   font-family: var(--heading-font-family);
   font-weight: 800;
   letter-spacing: -.02em;
