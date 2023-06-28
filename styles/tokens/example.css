@@ -1,0 +1,4 @@
+:root {
+  --primary-color-example: rgb(114, 190, 237);
+  --example-color-global-test: var(--primary-color-example);
+}
