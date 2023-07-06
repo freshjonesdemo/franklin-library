@@ -23,6 +23,8 @@ jobs:
           USER_NAME: 'William Jones'
           USER_EMAIL: 'billy@freshjones.com'
         run: |
+          echo $USER_NAME
+          echo $USER_EMAIL
           git config --global user.name "$USER_NAME"
           git config --global user.email "$USER_EMAIL"
           git checkout -b release/${{ github.event.release.tag_name }}
