@@ -1,0 +1,21 @@
+name: Create Release Branch
+
+on:
+  release:
+    types:
+      - created
+
+jobs:
+  create_release_branch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Create Release Branch
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git checkout -b release/$RELEASE_TAG
+          git push --set-upstream origin release/testmeman
