@@ -13,9 +13,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Print Release Tag
+        run: |
+          echo "Release Tag: ${{ github.event.release.tag_name }}"
+
       - name: Create Release Branch
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git checkout -b release/3.0.0
+          git checkout -b release/${{ github.event.release.tag_name }}
           git push --set-upstream origin release/testmeman
