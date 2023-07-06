@@ -18,8 +18,12 @@ jobs:
           echo "Release Tag: ${{ github.event.release.tag_name }}"
 
       - name: Create Release Branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          USER_NAME: 'William Jones'
+          USER_EMAIL: 'billy@freshjones.com'
         run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
+          git config user.name $USER_NAME
+          git config user.email $USER_EMAIL
           git checkout -b release/${{ github.event.release.tag_name }}
           git push --set-upstream origin release/${{ github.event.release.tag_name }}
