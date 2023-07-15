@@ -707,6 +707,13 @@ export function buildISI(main) {
   newSection.append(isi);
   main.append(newSection);
 }
+
+export function scriptLoader(url) {
+  var script = document.createElement("script");
+  script.src = url;
+  document.head.appendChild(script);
+}
+
 /**
  * Auto initializiation.
  */

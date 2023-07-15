@@ -28,4 +28,5 @@ jobs:
           git config --global user.name "$USER_NAME"
           git config --global user.email "$USER_EMAIL"
           git checkout -b release/${{ github.event.release.tag_name }}
+          git remote set-url origin https://${{ secrets.PAT_TOKEN }}@github.com/owner/repo.git
           git push --set-upstream origin release/${{ github.event.release.tag_name }}
