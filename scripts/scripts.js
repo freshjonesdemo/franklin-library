@@ -232,7 +232,7 @@ async function loadConfiguration() {
   window.site_config = data;
 }
 
-async function loadPage() {
+export async function loadPage() {
   // handle 404 from document
   if (window.errorCode === '404') {
     const resp = await fetch('/global/404.plain.html');
