@@ -228,7 +228,7 @@ function loadDelayed() {
 
 async function loadConfiguration() {
   const resp = await fetch('/config.json')
-  const data = resp.json();
+  const data = await resp.json();
   console.log('hello', data);
   //   .then((data) => {
   //     let dataArray = data.data.map((row) => {
