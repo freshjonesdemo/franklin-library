@@ -229,13 +229,7 @@ function loadDelayed() {
 async function loadConfiguration() {
   const resp = await fetch('/config.json')
   const data = await resp.json();
-  console.log('hello', data);
-  //   .then((data) => {
-  //     let dataArray = data.data.map((row) => {
-  //       return [row.Key, row.Value]
-  //     });
-  //     window.site_config = Object.fromEntries(dataArray);
-  //   });
+  window.site_config = data;
 }
 
 async function loadPage() {
