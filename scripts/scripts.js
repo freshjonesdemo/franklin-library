@@ -226,6 +226,18 @@ function loadDelayed() {
   // load anything that can be postponed to the latest here
 }
 
+async function loadConfiguration() {
+  const resp = await fetch('/config.json')
+  const data = resp.json();
+  console.log('hello', data);
+  //   .then((data) => {
+  //     let dataArray = data.data.map((row) => {
+  //       return [row.Key, row.Value]
+  //     });
+  //     window.site_config = Object.fromEntries(dataArray);
+  //   });
+}
+
 async function loadPage() {
   // handle 404 from document
   if (window.errorCode === '404') {
@@ -237,7 +249,7 @@ async function loadPage() {
       main.classList.remove('error');
     }
   }
-
+  await loadConfiguration();
   await loadEager(document);
   await loadLazy(document);
   loadDelayed();

@@ -714,6 +714,11 @@ export function scriptLoader(url) {
   document.head.appendChild(script);
 }
 
+export function loadExtras() {
+
+  console.log('ok we gonna load extras');
+}
+
 /**
  * Auto initializiation.
  */
