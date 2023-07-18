@@ -226,11 +226,11 @@ function loadDelayed() {
   // load anything that can be postponed to the latest here
 }
 
-async function loadConfiguration() {
-  const resp = await fetch('/config.json')
-  const data = await resp.json();
-  window.site_config = data;
-}
+// async function loadConfiguration() {
+//   const resp = await fetch('/config.json')
+//   const data = await resp.json();
+//   window.site_config = data;
+// }
 
 export async function loadPage() {
   // handle 404 from document
@@ -243,7 +243,6 @@ export async function loadPage() {
       main.classList.remove('error');
     }
   }
-  await loadConfiguration();
   await loadEager(document);
   await loadLazy(document);
   loadDelayed();
