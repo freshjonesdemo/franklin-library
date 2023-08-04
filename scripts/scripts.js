@@ -243,6 +243,7 @@ export async function loadPage() {
       main.classList.remove('error');
     }
   }
+  console.log('dude');
   await loadEager(document);
   await loadLazy(document);
   loadDelayed();
