@@ -20,50 +20,7 @@ const LCP_BLOCKS = []; // add your LCP blocks to the list
 const PRODUCTION_DOMAINS = [];
 window.hlx.RUM_GENERATION = 'project-1'; // add your RUM generation information here
 
-/**
- * Turns absolute links within the domain into relative links.
- * @param {Element} main The container element
- */
-export function makeLinksRelative(main) {
-  // eslint-disable-next-line no-use-before-define
-  const hosts = ['hlx.page', 'hlx.live', ...PRODUCTION_DOMAINS];
-  main.querySelectorAll('a[href]').forEach((a) => {
-    try {
-      const url = new URL(a.href);
-      const hostMatch = hosts.some((host) => url.hostname.includes(host));
-      if (hostMatch) {
-        a.href = `${url.pathname.replace('.html', '')}${url.search}${url.hash}`;
-      }
-    } catch (e) {
-      // eslint-disable-next-line no-console
-      console.log(`Could not make ${a.href} relative:`, e);
-    }
-  });
-}
 
-/**
- * Fetches metadata of page.
- * @param {string} path Pathname
- */
-export async function fetchPageMeta(path) {
-  const meta = {};
-  const resp = await fetch(path);
-  if (resp.ok) {
-    // eslint-disable-next-line no-await-in-loop
-    const text = await resp.text();
-    const headStr = text.split('<head>')[1].split('</head>')[0];
-    const head = document.createElement('head');
-    head.innerHTML = headStr;
-    const metaTags = head.querySelectorAll(':scope > meta');
-    metaTags.forEach((tag) => {
-      const name = tag.getAttribute('name') || tag.getAttribute('property');
-      const value = tag.getAttribute('content');
-      if (meta[name]) meta[name] += `, ${value}`;
-      else meta[name] = value;
-    });
-  }
-  return meta;
-}
 
 /** Builds announcement bar.
  */
@@ -84,41 +41,12 @@ async function buildAnnouncement() {
 }
 
 /**
- * Builds hero block.
- * @param {Element} main The container element
- */
-function buildHeroBlock(main) {
-  if (main.querySelector('.hero')) return;
-  const h1 = main.querySelector('h1');
-  const picture = main.querySelector('picture');
-  // eslint-disable-next-line no-bitwise
-  if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
-    const banner = [];
-    const body = document.createElement('div');
-    const section = h1.closest('main > div');
-    if (!section.previousElementSibling) {
-      [...section.children].forEach((child) => {
-        if (child.querySelector('picture') && child.textContent.trim() === '') banner.push(child);
-        else body.append(child);
-      });
-      section.append(buildBlock('hero', [banner, [body]]));
-    } else {
-      banner.push(picture);
-      body.append(h1);
-      const newSection = document.createElement('div');
-      newSection.append(buildBlock('hero', [banner, [body]]));
-      main.prepend(newSection);
-    }
-  }
-}
-
-/**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
  */
 async function buildAutoBlocks(main) {
   try {
-    await buildAnnouncement();
+    //await buildAnnouncement();
     // buildHeroBlock(main);
     buildISI(main);
   } catch (error) {
@@ -243,7 +171,6 @@ export async function loadPage() {
       main.classList.remove('error');
     }
   }
-  console.log('dude');
   await loadEager(document);
   await loadLazy(document);
   loadDelayed();
