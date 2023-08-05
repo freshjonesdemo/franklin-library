@@ -1,6 +1,5 @@
 import {
   sampleRUM,
-  buildBlock,
   loadHeader,
   loadFooter,
   createOptimizedPicture,
@@ -12,33 +11,14 @@ import {
   waitForLCP,
   loadBlocks,
   loadCSS,
-  getMetadata,
   buildISI,
+  addFavIcon
 } from './lib-franklin.js';
+
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
 const PRODUCTION_DOMAINS = [];
 window.hlx.RUM_GENERATION = 'project-1'; // add your RUM generation information here
-
-
-
-/** Builds announcement bar.
- */
-async function buildAnnouncement() {
-  if (getMetadata('announcement') !== 'off') {
-    const resp = await fetch(`${window.location.origin}/global/announcement.plain.html`);
-    if (resp.ok) {
-      const wrapper = document.createElement('aside');
-      wrapper.className = 'announcement';
-      const announcement = document.createElement('div');
-      announcement.innerHTML = await resp.text();
-      decorateButtons(announcement);
-      if (announcement.firstElementChild.children.length > 1) wrapper.classList.add('split');
-      wrapper.append(announcement);
-      document.body.prepend(wrapper);
-    }
-  }
-}
 
 /**
  * Builds all synthetic blocks in a container element.
@@ -92,23 +72,6 @@ async function loadEager(doc) {
     await decorateMain(main);
     document.body.classList.add('appear');
     await waitForLCP(LCP_BLOCKS);
-  }
-}
-
-/**
- * Adds the favicon.
- * @param {string} href The favicon URL
- */
-export function addFavIcon(href) {
-  const link = document.createElement('link');
-  link.rel = 'icon';
-  link.type = 'image/png';
-  link.href = href;
-  const existingLink = document.querySelector('head link[rel="icon"]');
-  if (existingLink) {
-    existingLink.parentElement.replaceChild(link, existingLink);
-  } else {
-    document.getElementsByTagName('head')[0].appendChild(link);
   }
 }
 

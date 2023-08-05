@@ -700,6 +700,23 @@ export function setup() {
 
 }
 
+/**
+ * Adds the favicon.
+ * @param {string} href The favicon URL
+ */
+export function addFavIcon(href) {
+  const link = document.createElement('link');
+  link.rel = 'icon';
+  link.type = 'image/png';
+  link.href = href;
+  const existingLink = document.querySelector('head link[rel="icon"]');
+  if (existingLink) {
+    existingLink.parentElement.replaceChild(link, existingLink);
+  } else {
+    document.getElementsByTagName('head')[0].appendChild(link);
+  }
+}
+
 export function buildISI(main) {
   if (getMetadata('isi') === 'off') return;
   const isi = buildBlock('core-isi', [[`<a href="/global/isi">${window.location.origin}/global/core-isi</a>`]]);
