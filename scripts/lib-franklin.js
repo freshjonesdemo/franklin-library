@@ -687,10 +687,10 @@ export function setup() {
     }
   }
 
-  const libraryEl = document.querySelector('script[src$="/scripts/scripts.js"]');
+  const libraryEl = document.querySelector('script[src$="/scripts/library.js"]');
   if (libraryEl) {
     try {
-      [window.hlx.libraryBasePath] = new URL(libraryEl.src).pathname.split('/scripts/scripts.js');
+      [window.hlx.libraryBasePath] = new URL(libraryEl.src).pathname.split('/scripts/library.js');
     } catch (error) {
       // eslint-disable-next-line no-console
       console.log(error);
