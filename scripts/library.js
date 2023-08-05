@@ -1,18 +1,18 @@
 import {
-    sampleRUM,
-    loadHeader,
-    loadFooter,
+    addFavIcon,
+    buildISI,
     createOptimizedPicture,
+    decorateBlocks,
     decorateButtons,
     decorateIcons,
     decorateSections,
-    decorateBlocks,
     decorateTemplateAndTheme,
-    waitForLCP,
     loadBlocks,
     loadCSS,
-    getMetadata,
-    buildISI,
+    loadFooter,
+    loadHeader,
+    sampleRUM,
+    waitForLCP
 } from './lib-franklin.js';
 
 class FranklinLibrary {
@@ -23,7 +23,7 @@ class FranklinLibrary {
         this.rum_gneration = ''
     }
 
-    static async buildAutoBlocks(main) {
+    async buildAutoBlocks(main) {
         try {
         //await buildAnnouncement();
         // buildHeroBlock(main);
@@ -34,38 +34,38 @@ class FranklinLibrary {
         }
     }
 
-    static async decorateMain(main, fragment = false) {
+    async decorateMain(main, fragment = false) {
         // hopefully forward compatible button decoration
         decorateButtons(main);
         decorateIcons(main);
-        if (!fragment) await buildAutoBlocks(main);
+        if (!fragment) await this.buildAutoBlocks(main);
 
         decorateSections(main);
         const sections = [...main.querySelectorAll('.section')];
         sections.forEach((section) => {
-        const bg = section.dataset.background;
-        if (bg) {
-            const picture = createOptimizedPicture(bg);
-            picture.classList.add('section-background');
-            section.prepend(picture);
-        }
+            const bg = section.dataset.background;
+            if (bg) {
+                const picture = createOptimizedPicture(bg);
+                picture.classList.add('section-background');
+                section.prepend(picture);
+            }
         });
 
         decorateBlocks(main);
     }
 
-    static async loadEager(doc) {
+    async loadEager(doc) {
         document.documentElement.lang = 'en';
         decorateTemplateAndTheme();
         const main = doc.querySelector('main');
         if (main) {
-        await decorateMain(main);
-        document.body.classList.add('appear');
-        await waitForLCP(LCP_BLOCKS);
+            await this.decorateMain(main);
+            document.body.classList.add('appear');
+            await waitForLCP(this.lcp_blocks);
         }
     }
 
-    static async loadLazy(doc) {
+    async loadLazy(doc) {
         const main = doc.querySelector('main');
         await loadBlocks(main);
 
@@ -88,12 +88,18 @@ class FranklinLibrary {
         || window.location.hostname.endsWith('.hlx.live')
         || window.location.hostname.endsWith('.franklin.edison.pfizer')
         || window.location.hostname.endsWith('.freshjones.dev')) {
-        await import(`${window.hlx.CDNBasePath}/tools/sidekick/review.js`);
+            await import(`${window.hlx.CDNBasePath}/tools/sidekick/review.js`);
         }
 
     }
 
-    static async loadPage() {
+    loadDelayed() {
+        // eslint-disable-next-line import/no-cycle
+        window.setTimeout(() => import('./delayed.js'), 3000);
+        // load anything that can be postponed to the latest here
+    }
+
+    async loadPage() {
         // handle 404 from document
         if (window.errorCode === '404') {
           const resp = await fetch('/global/404.plain.html');
@@ -104,16 +110,12 @@ class FranklinLibrary {
             main.classList.remove('error');
           }
         }
-        await loadEager(document);
-        await loadLazy(document);
-        loadDelayed();
+        await this.loadEager(document);
+        await this.loadLazy(document);
+        this.loadDelayed();
     }
 
-    loadDelayed() {
-        // eslint-disable-next-line import/no-cycle
-        window.setTimeout(() => import('./delayed.js'), 3000);
-        // load anything that can be postponed to the latest here
-    }
+
 }
 
 export default FranklinLibrary;

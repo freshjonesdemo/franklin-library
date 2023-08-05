@@ -1,5 +1,5 @@
 import FranklinLibrary from './library.js';
 
-library = new FranklinLibrary()
+let library = new FranklinLibrary()
 
-console.log(library);
+library.loadPage();

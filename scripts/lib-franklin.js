@@ -686,6 +686,7 @@ export function setup() {
       console.log(error);
     }
   }
+
   const libraryEl = document.querySelector('script[src$="/scripts/lib-franklin.js"]');
   if (libraryEl) {
     try {
