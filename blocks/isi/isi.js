@@ -1,5 +1,4 @@
 import { decorateIcons, loadBlocks, fetchPlaceholders } from '../../scripts/lib-franklin.js';
-import { decorateMain } from '../../scripts/scripts.js';
 
 function closeOnEscape(e) {
   if (e.code === 'Escape') {
@@ -33,7 +32,6 @@ export default async function decorate(block) {
   if (resp.ok) {
     const aside = document.createElement('aside');
     aside.innerHTML = await resp.text();
-    decorateMain(aside, true);
     await loadBlocks(aside);
     block.innerHTML = '';
     block.append(aside);
