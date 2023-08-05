@@ -687,15 +687,16 @@ export function setup() {
     }
   }
 
-  const libraryEl = document.querySelector('script[src$="/scripts/lib-franklin.js"]');
+  const libraryEl = document.querySelector('script[src$="/scripts/scripts.js"]');
   if (libraryEl) {
     try {
-      [window.hlx.libraryBasePath] = new URL(libraryEl.src).pathname.split('/scripts/lib-franklin.js');
+      [window.hlx.libraryBasePath] = new URL(libraryEl.src).pathname.split('/scripts/scripts.js');
     } catch (error) {
       // eslint-disable-next-line no-console
       console.log(error);
     }
   }
+
 
   window.hlx.CDNBasePath = 'https://regal-faloodeh-256aa9.netlify.app'
 
