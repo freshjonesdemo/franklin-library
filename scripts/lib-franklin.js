@@ -188,8 +188,8 @@ export async function decorateIcons(element) {
   await Promise.all(icons.map(async (span) => {
     let iconName = Array.from(span.classList).find((c) => c.startsWith('icon-')).substring(5);
     let iconPath = window.hlx.codeBasePath;
-    if(iconName.includes('lib-')) {
-      iconName = iconName.substring(4);
+    if(iconName.startsWith('lib-')) {
+      iconName = iconName.replace('lib-', '');
       iconPath = window.hlx.libraryBasePath;
     }
     if (!ICONS_CACHE[iconName]) {
@@ -225,7 +225,10 @@ export async function decorateIcons(element) {
   svgSprite.innerHTML += symbols;
 
   icons.forEach((span) => {
-    const iconName = Array.from(span.classList).find((c) => c.startsWith('icon-')).replace('icon-', '');
+    let iconName = Array.from(span.classList).find((c) => c.startsWith('icon-')).replace('icon-', '');
+    if(iconName.startsWith('lib-')) {
+      iconName = iconName.replace('lib-', '');
+    }
     const parent = span.firstElementChild?.tagName === 'A' ? span.firstElementChild : span;
     const isFirstEl = parent === parent.parentElement.firstChild;
     const isLastEl = parent === parent.parentElement.lastChild;
