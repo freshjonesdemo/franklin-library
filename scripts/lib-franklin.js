@@ -686,7 +686,6 @@ export function addFavIcon(href) {
   link.rel = 'icon';
   link.type = 'image/png';
   link.href = href;
-  console.log(href);
   const existingLink = document.querySelector('head link[rel="icon"]');
   if (existingLink) {
     existingLink.parentElement.replaceChild(link, existingLink);
