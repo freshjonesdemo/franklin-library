@@ -20,6 +20,7 @@ import {
 class FranklinLibrary {
 
     constructor(options = {}) {
+        this.options = options
         this.lcp_blocks = options?.lcp_blocks ? options.lcp_blocks : [];;
         this.production_domains = options?.production_domains ? options.production_domains : [];
         this.rum_genration = options?.rum_genration ? options.rum_genration : ''
@@ -129,7 +130,7 @@ class FranklinLibrary {
      */
     initialize() {
         document.body.style.display = 'none';
-        librarySetup();
+        librarySetup(this.options);
         sampleRUM('top');
 
         window.addEventListener('load', () => sampleRUM('load'));
