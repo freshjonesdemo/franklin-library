@@ -13,8 +13,7 @@ import {
     loadHeader,
     sampleRUM,
     waitForLCP,
-    getMetadata,
-    librarySetup
+    getMetadata
 } from './lib-franklin.js';
 
 class FranklinLibrary {
