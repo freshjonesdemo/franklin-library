@@ -25,7 +25,7 @@ class FranklinLibrary {
         this.rum_generation = typeof(options.rum_generation) !== 'undefined' ? options.rum_generation : ''
         this.footer = typeof(options.footer) !== 'undefined' ? options.footer : 'core-footer'
         this.header = typeof(options.header) !== 'undefined' ? options.header : 'core-header'
-        this.favicon = options?.favicon ?  options.favicon : '/lib/assets/favicon.png'
+        this.favicon = options?.favicon ?  options.favicon : '/lib/styles/favicon.png'
     }
 
     async buildAutoBlocks(main) {
