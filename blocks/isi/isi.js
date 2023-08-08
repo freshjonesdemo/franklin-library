@@ -72,7 +72,7 @@ export default async function decorate(block) {
     toggleBtn.setAttribute('aria-controls', 'isi');
     toggleBtn.setAttribute('aria-label', `${ph.isiExpand} ${headingText}`);
     toggleBtn.innerHTML = `<span class="isi-toggle-text">${ph.isiExpand}</span>
-      <span class="icon icon-arrow-up"></span>`;
+      <span class="icon icon-lib-arrow-up"></span>`;
     toggleBtn.addEventListener('click', () => {
       const headingHeight = headingWrapper.offsetHeight;
       const expanded = aside.getAttribute('aria-expanded') === 'true';
