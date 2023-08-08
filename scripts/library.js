@@ -90,7 +90,7 @@ class FranklinLibrary {
         loadFooter(doc.querySelector('footer'));
 
         loadCSS(`${window.hlx.libraryBasePath}/styles/lazy-styles.css`);
-        addFavIcon(this.favicon);
+        // addFavIcon(this.favicon);
         sampleRUM('lazy');
         sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
         sampleRUM.observe(main.querySelectorAll('picture > img'));
