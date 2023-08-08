@@ -678,18 +678,6 @@ export function loadFooter(footer) {
 }
 
 /**
- * Setup block utils.
- */
-export function librarySetup(options = {}) {
-  console.log('HI',options);
-  window.hlx = window.hlx || {};
-  window.hlx.codeBasePath = options?.codeBasePath ? options.codeBasePath : '';
-  window.hlx.libraryBasePath = options?.libraryBasePath ? options.libraryBasePath : '/lib';
-  window.hlx.lighthouse = new URLSearchParams(window.location.search).get('lighthouse') === 'on';
-  window.hlx.CDNBasePath = options?.CDNBasePath ? options.CDNBasePath : '';
-}
-
-/**
  * Adds the favicon.
  * @param {string} href The favicon URL
  */

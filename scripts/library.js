@@ -21,11 +21,11 @@ class FranklinLibrary {
 
     constructor(options = {}) {
         this.options = options
-        this.lcp_blocks = options?.lcp_blocks ? options.lcp_blocks : [];;
-        this.production_domains = options?.production_domains ? options.production_domains : [];
-        this.rum_genration = options?.rum_genration ? options.rum_genration : ''
-        this.footer = options?.footer ? options.footer : 'core-footer'
-        this.header = options?.header ? options.header : 'core-header'
+        this.lcp_blocks = typeof(options.lcp_blocks) == 'array' ? options.lcp_blocks : [];
+        this.production_domains = typeof(options.production_domains) == 'array' ? options.production_domains : [];
+        this.rum_generation = typeof(options.rum_generation) !== 'undefined' ? options.rum_generation : ''
+        this.footer = typeof(options.footer) !== 'undefined' ? options.footer : 'core-footer'
+        this.header = typeof(options.header) !== 'undefined' ? options.header : 'core-header'
     }
 
     async buildAutoBlocks(main) {
@@ -126,11 +126,23 @@ class FranklinLibrary {
 
 
     /**
+     * Initialize Window
+     */
+    setWindowProps(options = {}) {
+        window.hlx = window.hlx || {};
+        window.hlx.codeBasePath = typeof(options.codeBasePath) != 'undefined' ? options.codeBasePath : '';
+        window.hlx.libraryBasePath = typeof(options.libraryBasePath) != 'undefined' ? options.libraryBasePath : '/lib';
+        window.hlx.lighthouse = new URLSearchParams(window.location.search).get('lighthouse') === 'on';
+        window.hlx.CDNBasePath = typeof(options.CDNBasePath) != 'undefined' ? options.CDNBasePath : '';
+    }
+
+
+    /**
      * initializiation.
      */
     initialize() {
         document.body.style.display = 'none';
-        librarySetup(this.options);
+        this.setWindowProps(this.options);
         sampleRUM('top');
 
         window.addEventListener('load', () => sampleRUM('load'));
