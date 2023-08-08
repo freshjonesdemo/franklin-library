@@ -185,13 +185,16 @@ export async function decorateIcons(element) {
 
   // Download all new icons
   const icons = [...element.querySelectorAll('span.icon')];
-  console.log(icons);
   await Promise.all(icons.map(async (span) => {
     const iconName = Array.from(span.classList).find((c) => c.startsWith('icon-')).substring(5);
+    let iconPath = window.hlx.codeBasePath;
+    if(iconName.includes('-lib')) {
+      iconPath = window.hlx.libraryBasePath;
+    }
     if (!ICONS_CACHE[iconName]) {
       ICONS_CACHE[iconName] = true;
       try {
-        const response = await fetch(`${window.hlx.libraryBasePath}/icons/${iconName}.svg`);
+        const response = await fetch(`${iconPath}/icons/${iconName}.svg`);
         if (!response.ok) {
           ICONS_CACHE[iconName] = false;
           return;
