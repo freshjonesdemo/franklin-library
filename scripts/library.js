@@ -100,6 +100,7 @@ class FranklinLibrary {
     }
 
     async loadPage() {
+
         // handle 404 from document
         if (window.errorCode === '404') {
           const resp = await fetch('/global/404.plain.html');
