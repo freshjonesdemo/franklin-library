@@ -675,6 +675,7 @@ export function loadFooter(footer) {
 export function setup() {
   window.hlx = window.hlx || {};
   window.hlx.codeBasePath = '';
+  window.hlx.libraryBasePath = '';
   window.hlx.lighthouse = new URLSearchParams(window.location.search).get('lighthouse') === 'on';
 
   const scriptEl = document.querySelector('script[src$="/scripts/scripts.js"]');
