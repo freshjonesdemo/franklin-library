@@ -743,7 +743,6 @@ export function loadExtras() {
  * Auto initializiation.
  */
 function init() {
-  console.log('called');
   document.body.style.display = 'none';
   setup();
   sampleRUM('top');
